@@ -12,15 +12,15 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@master
         with:
-          root_file: resume.tex
+          root_file: cv.tex
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: resume.pdf
+          files: cv.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Pings repo
         uses: ./ping-repo
         env:
           GITHUB_TOKEN: ${{ secrets.PA_TOKEN }}
-          REPO: alessbell/aless.co
+          REPO: shahdloo/shahdloo.github.io
