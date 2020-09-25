@@ -19,7 +19,7 @@ jobs:
         with:
           files: cv.pdf
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SECRET_CV }}
       - name: Pings repo
         uses: ./ping-repo
         env:
