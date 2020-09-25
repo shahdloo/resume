@@ -1,214 +1,176 @@
-%-------------------------
-% Resume in LaTeX
-% Author : Alessia Bellisario
-% License : MIT
-%------------------------
+\documentclass[10pt,a4paper,roman]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 
-\documentclass[letterpaper,10.8pt]{article}
-\usepackage{tabularx}
-\usepackage{latexsym}
-\usepackage{geometry}
-\usepackage[english]{babel}
-\usepackage[empty]{fullpage}
-\usepackage{titlesec}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage{enumitem}
-\usepackage[pdftex,hidelinks=true]{hyperref}
-\usepackage{fancyhdr}
+% moderncv themes
+\moderncvstyle{classic}                            % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue}                                % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
 
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
 
-% Adjust margins
-\addtolength{\oddsidemargin}{-0.25in}
-\addtolength{\evensidemargin}{-0.25in}
-\addtolength{\topmargin}{-0.35in}
-\addtolength{\textwidth}{0.5in}
-\addtolength{\textheight}{1in}
+% Bibliography
+\usepackage[%
+  backend=biber,
+  defernumbers=true,
+  style=ieee,
+%   bibstyle=authoryear,
+  url=false, 
+    doi=true,
+  sorting=ydnt,         % Sort by year (descending), name, title
+% sorting=none,         % Do not sort at all. All entries are processed in citation order.
+]{biblatex}
+\addbibresource{library.bib} % to use bib file created with filecontents
 
-\urlstyle{rm}
+\renewcommand*{\mkbibnamegiven}[1]{%
+  \ifitemannotation{highlight}
+    {\textbf{#1}}
+    {#1}}
 
-\raggedbottom
-\raggedright
-\setlength{\tabcolsep}{0in}
+\renewcommand*{\mkbibnamefamily}[1]{%
+  \ifitemannotation{highlight}
+    {\textbf{#1}}
+    {#1}}
 
-\pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\fancyfoot[C]{
-    The \LaTeX{} source for this resumé can be found at \href{https://github.com/alessbell/resume}{github.com/alessbell/resume}
-}
+\makeatletter
+\newcommand{\citesinthissection}[1]{\xdef\@totalcites{#1}}
+% http://tex.stackexchange.com/q/66829/5764
+\newcounter{numbibentries}
+\renewbibmacro*{finentry}{\stepcounter{numbibentries}\finentry}
+% http://tex.stackexchange.com/q/123805/5764
+\defbibenvironment{bibliography}
+  {\list
+     {\printtext[labelnumberwidth]{% label format from numeric.bbx
+        \printfield{labelprefix}%
+        \number\numexpr\@totalcites-\abx@field@labelnumber+1\relax}}
+     {\setlength{\topsep}{0pt}% layout parameters from moderncvstyleclassic.sty
+      \setlength{\labelwidth}{\hintscolumnwidth}%
+      \setlength{\labelsep}{\separatorcolumnwidth}%
+      \leftmargin\labelwidth%
+      \advance\leftmargin\labelsep}%
+      \sloppy\clubpenalty4000\widowpenalty4000}
+  {\endlist}
+  {\item}
+\makeatother
 
-% Sections formatting
-\titleformat{\section}{
-  \vspace{-3pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
 
-%-------------------------
-% Custom commands
-\newcommand{\resumeItem}[2]{
-  \item\small{
-    \textbf{#1}{: #2 \vspace{-2pt}}
-  }
-}
 
-\newcommand{\resumeItemWithoutTitle}[1]{
-  \item\small{
-    {\vspace{-2pt}}
-  }
-}
+% character encoding
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+\usepackage{qrcode}
+\usepackage{graphicx}
+% adjust the page margins
+\usepackage[scale=0.8]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
 
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-1pt}\item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-4pt}
-}
+\renewcommand*{\titlefont}{\fontsize{10}{18}\mdseries\upshape}
 
-\newcommand{\education}[4]{
-  \vspace{0pt}\item[]
-    \begin{tabular*}{1\textwidth}{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-4pt}
-}
+% personal data
+\usepackage{xcolor}
+\name{\textcolor{gray}{Mohammaddd}}{Shahdloo}
+% \extrainfo{additional information} 
+\title{Wellcome Centre for Integrative Neuroimaging\newline
+Department of Experimental Psychology\newline
+University of Oxford}                               % optional, remove / comment the line if not wanted
+\address{FMRIB Centre, John Radcliffe Hospital\\}{Oxford, UK - OX3 9DU}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+\phone[mobile]{+44~7423~814282}                   % optional, remove / comment the line if not wanted
+% \phone[fixed]{+90~(312)~290~8420}                    % optional, remove / comment the line if not wanted
+%\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
+\email{mo.shahdloo@psy.ox.ac.uk}                               % optional, remove / comment the line if not wanted
+\homepage{moshahdloo.com}                         % optional, remove / comment the line if not wanted
 
-\newcommand{\jobLineItem}[2]{
-  \vspace{0pt}\item[]
-    \begin{tabular*}{0.98\textwidth}{l@{\extracolsep{\fill}}r}
-      \textit{#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-4pt}
-}
 
-\newcommand{\resumeSmallSubheadingBreather}[2]{
-  \vspace{-1pt}\item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-4pt}
-}
-
-\newcommand{\employerTitle}[3]{
-  \begin{tabular*}{1\textwidth}{l@{\extracolsep{\fill}}r}
-    \href{#1}{\textbf{#2}} & \textbf{#3} \\
-  \end{tabular*}\vspace{-4pt}
-}
-
-\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-5pt}}
-
-\renewcommand{\labelitemii}{$\circ$}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
-\newcommand{\educationStart}{\begin{itemize}[leftmargin=0pt]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
-
-%-------------------------------------------
-%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%
-
+\photo[65pt][0.0pt]{qr-code}
+% \qrphoto[2cm][0.5pt]{https://tex.stackexchange.com/questions/474546/} % 
 \begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
 
-%----------HEADING-----------------
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \textbf{{\LARGE Alessia Bellisario}}\\
-  \texttt{\href{mailto:alessia@bellisar.io}{alessia@bellisar.io}} · \texttt{\href{https://aless.co}{https://aless.co}} & \href{https://www.linkedin.com/in/alessiabellisario/}{LinkedIn}  ·  \href{https://github.com/alessbell}{GitHub}\\
-  Full Stack Web Engineer & New York or Remote\\
-\end{tabular*}
+\section{Academic Experience}
 
-%--------PROGRAMMING SKILLS------------
-\section{Skills}
-	\resumeSubHeadingListStart
-	\resumeSubItem{Specialties}{ESNext JavaScript, TypeScript, React, Node.js, GraphQL, Webpack, Testing Library, Jest, Next.js}
-  \resumeSubItem{More Tools and Languages}{Gatsby, Prettier, Preact, MongoDB, DangerJS, Contentful and other headless CMS}
-  \vspace{5px}
-\resumeSubHeadingListEnd
+\cventry{2020--present}{Postdoctoral Researcher}{\href{https://www.win.ox.ac.uk/research/physics-research}{FMRIB Centre/University of Oxford}}{}{}{}
+\cventry{2014--2020}{Graduate Researcher}{\href{http://www.icon.bilkent.edu.tr}{ICON Lab/Bilkent University}}{}{}{Contributing to various research projects, with focus on attentional modulations of the cortical representation of audio-visual natural stimuli, and developing reconstruction techniques for accelerated MRI.}%
+\cventry{2014--2020}{Teaching Assistant}{\href{http://www.ee.bilkent.edu.tr/en/}{Bilkent University}}{}{}{}
+\cvlistdoubleitem{Statistical Learning}{Computational Neuroscience}
+\cvlistdoubleitem{Biomedical Signals and Instrumentation}{Neural Networks}
+\cvlistdoubleitem{Microcontrollers}{Electromagnetics}
 
-%-----------EXPERIENCE-----------------
-\section{Experience}
-  \employerTitle
-    {https://venmo.com}{Venmo (PayPal)}{May 2020 - Present}
-  \resumeSubHeadingListStart
-    \jobLineItem
-      {Senior Front End Engineer (Full-time, New York, NY)}{}
-      \resumeItemListStart
-        \resumeItem{Next.js and Webviews}{One of two web tech leads responsible for leading a team of six engineers in migrating the consumer-facing web application (venmo.com) to a Next.js application, including webviews used for core flows in the mobile clients with millions of pageviews per month. Led the i18n/l10n and a11y efforts.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
-  \employerTitle
-    {https://sesame.mit.edu}{Massachusetts Institute of Technology (MIT) Energy Initiative}{April 2020 - August 2020}
-  \resumeSubHeadingListStart
-    \jobLineItem
-      {Senior Software Engineer (Contract, Remote)}{}
-      \resumeItemListStart
-        \resumeItem{SESAME Project}{Built a web application used by energy policy analysts to analyze and compare the impacts of proposed energy pathways. Analysts can create, save and edit pathways and compare downstream effects.}
-        \resumeItem{COVID-19 Dashboard}{Built a dashboard that charts the impact of COVID-19 on energy consumption in the United States. Built with Gatsby and deployed using Amazon S3, CloudFront and CodeBuild webhooks. Via CodeBuild cron, new CSVs are fetched daily, the data analyzed and dashboard automatically rebuilt.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
-
-  \employerTitle
-    {https://breather.com}{Breather}{January 2015 - April 2020}
-  \resumeSubHeadingListStart
-    \jobLineItem
-        {Senior Front End Engineer (Full-time, New York, NY)}{January 2019 - Present}
-    \resumeItemListStart
-        \resumeItem{Tools for Office Customers}
-        {Led the development of an extensive suite of administrative tools and internal tooling for creating, managing, accessing and invoicing long-term office bookings, generating tens of millions of dollars of revenue across North America and London, UK in its first year.}
-        \resumeItem{Led the Team to Adopt Best Practices to Ship Software Faster}
-        {Led the Best Practices Guild in the adoption of tools and processes to improve developer collaboration and led the team in designing a Request For Comments (RFC) process. Developed a CI/CD process and rolled it out to the entire 20 person engineering team.}
-    \resumeItemListEnd
-    \jobLineItem
-        {Front End Engineer (Full-time, New York, NY)}{April 2017 - December 2018}
-    \resumeItemListStart
-        \resumeItem{Progressive Web App for Landlords}
-        {Architected and developed \textit{Onsite} as Breather’s first engineer in the U.S. and leader of the Real Estate Innovations pod. \textit{Onsite} is a PWA made with Preact and Flow, features security and financial reporting and integrates with building access systems used in Class A office towers in Manhattan.}
-        \resumeItem{React Component Library}
-        {Refactored dozens of components while optimizing \textit{Onsite} in order to ship per-component modules. Resulted in a 72\% reduction in bundle size for one web app and 36\% for another.}
-      \resumeItemListEnd
-    \jobLineItem
-		    {Full Stack Engineer (Full-time, Montréal, Canada)}{January 2015 - March 2017}
-		\resumeItemListStart
-        \resumeItem{Overhaul Access Controls}
-        {Built interfaces for managing critical door code information and inviting meeting attendees via email or magic link. Developed a tool for generating transactional email templates.}
-        \resumeItem{Modernize Breather.com}
-        {Led a progressive rewrite of Breather.com from Backbone to modern React/Redux.}
-    \resumeItemListEnd
-    \resumeSubHeadingListEnd
-
-%-----------PROJECTS-----------------
-\section{Projects}
-\resumeSubHeadingListStart
-\resumeSubItem{\href{https://github.com/alessbell/lines}{Recurse Center}}{Attended the mini 3 batch in April 2019. Built a web app using Rust and WebAssembly that draws happy faces that follow the user's cursor using wasm-bindgen to do direct DOM manipulation from Rust. (2019)}
-\resumeSubItem{\href{https://aless.co/gatsby-wasm-plugin/}{gatsby-remark-twitter-cards}}{Built a Gatsby plugin with Rust and WebAssembly that generates Open Graph social card images at build time. It supports vector fonts and handles text layout without native dependencies. (2019)}
-% \resumeSubItem{\href{https://github.com/alessbell/wave-tic-tac-toe}{Minimax Tic Tac Toe}}{A tic tac toe game in which a human faces off against an unbeatable computer. Built with Node and Express, the game is played via querystring. (2019)}
-\vspace{5px}
-\resumeSubHeadingListEnd
-
-%-----------Awards-----------------
-% \section{Honors and Awards}
-% \begin{description}
-% \item[] {\textbf{Above and Beyond} award for exemplifying Breather’s values of contribution and ambition (2017)}
-% \vspace{-2px}
-% \end{description}
-
-%-----------Presentations----------
-\section{Presentations}
-\begin{description}
-\item[] {\href{https://www.youtube.com/watch?v=6EHbfAmA_0c}{“A QuickStart™ Guide to Making Things on the Internet”} - Google Women Techmakers Montreal (2016)}
-\end{description}
-
-%-----------EDUCATION-----------------
 \section{Education}
-  \educationStart
-    \education
-      {Bitmaker Labs (Now Bitmaker General Assembly)}{June 2014 - August 2014}
-      {JavaScript and Ruby on Rails Bootcamp}{Toronto, Canada}
-    \education
-      {University of Toronto}{September 2009 - June 2014}
-      {Honours Bachelor of Arts in Ethics, Society \& Law}{Toronto, Canada}
-    \vspace{-4px}
-  \resumeSubHeadingListEnd
+\cventry{Jan 2017\\Feb 2020}{Ph.D.}{\href{http://www.ee.bilkent.edu.tr/en/}{Bilkent University}}{Ankara/Turkey}{\textit{Electrical and Electronics Engineering Department}}{Electrical and Electronics Engineering\newline Advisor: Tolga \c{C}ukur 
+\newline Dissertation title: \textit{Optimization and Machine-Learning in MRI: Applications in Rapid MR Image Reconstruction and Encoding Models of Cortical Representations}
+}% arguments 3 to 6 can be left empty
+\cventry{Sep 2014\\Dec 2016}{M.Sc.}{\href{http://www.ee.bilkent.edu.tr/en/}{Bilkent University}}{Ankara/Turkey}{\textit{Electrical and Electronics Engineering Department}}{Electrical and Electronics Engineering\newline Advisor: Tolga \c{C}ukur}  % arguments 3 to 6 can be left empty
+\cventry{Sep 2007\\Jun 2011}{B.Sc.}{\href{https://ee.aut.ac.ir/en}{Amirkabir University of Technology}}{Tehran/Iran}{\textit{Electrical Engineering Department}}{Electrical Engineering/Control Engineering\newline Advisor: Behzad Samadi}
+
+\section{Research Experience}
+\subsection{Postdoctoral Researcher, FMRIB Centre, University of Oxford}
+\cventry{2020--present}{Motion-correction for awake non-human primate fMRI}{}{}{}{Functional imaging of awake non-human primates is challenging not only due to their smaller brain size, but also due to excessive local field fluctuations due to animals' motion. Using a novel pulse sequence, efficient reconstruction techniques, and a custom-made multi-channel coil we aim to perform accelerated functional scans of awake monkeys.}
+
+\subsection{Graduate Researcher, ICON Lab/UMRAM, Bilkent University}
+\cventry{2018--present}{Hierarchy of the auditory representation revealed by deep models}{}{}{}{Using a natural story listening experimental paradigm, we use computational models based on deep neural networks to study the effect of context integration on the representation of natural stories across the cortex. We are further interested in studying the attentional modulations of this property across cortex. \textit{(Manuscript in preparation)}}
+
+\cventry{2018--present}{The interaction of action-based attention and semantic representation}{}{}{}{We use voxelwise models to estimate the contribution of a multitude of action categories in natural movies to BOLD responses across cortex. We then study the attentional modulation of the semantic representation under different attention tasks. \textit{(Manuscript in preparation)}}
 
 
+\cventry{2018--2019}{Joint reconstruction of heavily undersampled acquisitions using generative adversarial networks}{}{}{}{Using conditional generative adversarial networks, we performed synergistic reconstruction-synthesis of multi-contrast MRI. This method preserves high-frequency details of the target contrast by relying on the shared high-frequency information available from the source contrast, and prevents feature leakage or loss by relying on the undersampled acquisitions of the target contrast. \textit{(Dar et al, ArXiv, 2017 \& IEEE JSTSP, 2020)}}
 
-%-------------------------------------------
+\cventry{2016--2018}{Projection onto epigraph sets for rapid self-tuning CS-MRI}{}{}{}{We proposed a self-tuning reconstruction framework for general single/multi channel and single/multi acquisition datasets, named PESCaT. PESCaT outperforms conventional auto-tuning reconstruction methods while benefiting from 10x less computational burden. \textit{(Shahdloo et al, IEEE TMI, 2019)}}
+
+
+\cventry{2016--2017}{Trade off between fat-suppression and partial-voluming in bSSFP acquisitions}{}{}{}{Fat-suppression in bSSFP can be achieved using weighted average of in-phase and out-of-phase acquisitions raised to a negative power. We studied the effects of the power parameter on the trade off between fat-suppression and partial voluming artifacts under various experimental setups. We devised optimal parameter values meeting the fat-suppression and partial voluming requirements. \textit{(Manuscript in preparation)}}
+
+
+\cventry{2014--2016}{Biased-competition in semantic representation during divided attention}{}{}{}{We studied the degree to which the biased-competition (BC) hypothesis can account for semantic modulation during divided attention. We showed that the representations across the cortex follow the BC predictions. Furthermore, intrinsic selectivity of cortical areas biases the competition in category selective areas of the ventral temporal cortex. \textit{(Shahdloo et al, NeuroImage, 2019)}}
+
+\section{Experience in Industry}
+\cventry{Jan 2014-Sep 2014}{Hardware developer}{Farineh Fanavar}{Tehran}{Iran}{Implemented industrial communication protocols on low-level embedded hardware environments (C, C++) to be used in distributed control systems.}
+
+\cventry{2013-2014}{Senior software developer}{K.A.G.}{Tehran}{Iran}{Implemented industrial communication protocols (C, C\#) to be used in dispatching systems in oil and gas industry.}
+
+\cventry{2011-2013}{RnD Engineer}{Kerman Tablo}{Tehran}{Iran}{Implemented process controllers (C, Assembly) to be used in Iran South Pars refinery plant.
+Made improvements on different IO modules by redesigning and enhancing low-level hardware and software modules.
+Wrote Linux kernel driver modules for various home-built devices.
+}
+
+\section{Publications}
+\nocite{Shahdloo:tmi19,Shahdloo:2019fn,Dar:2018uz,Dar:2020jstsp}
+\citesinthissection{4}% There are 3 cites in this section
+\printbibliography[type=article,title={Articles},heading=subbibliography]
+
+% \nocite{Dar:2018uz}
+% \citesinthissection{3}% There are 2 cites in this section
+% \printbibliography[type=online,title={Preprints},heading=subbibliography]
+
+
+\nocite{Shahdloo:2019ccn,Shahdloo:2019ohbm,Shahdloo:2019esmrmb,Shahdloo:2019ismrm,Shahdloo:2018ismrm,Shahdloo:2017ohbm,Shahdloo:2017esmrmb}
+\citesinthissection{11}% There are 7 cites in this section
+\printbibliography[type=inproceedings,title={Peer Reviewed Conference Publications},heading=subbibliography]
+
+
+\section{Programming Skills}
+\cvitem{Programming Languages}{Python (professional), Matlab (professional), C (professional), C++ (professional), R (intermediate), C\# (intermediate), Fortran (intermediate)}
+\cvitem{Tools}{Tensorflow (professional), Keras (professional), PyTorch (intermediate), NiPype (frequently used), Git (frequently used), SVN (often used)}
+
+\section{Honors and Awards}
+
+\cvitem{2014--2021}{Full scholarship granted by Bilkent University for graduate studies}
+\cvitem{2012}{Ranked 28th among 100k participants in Iranian national higher education examination}
+\cvitem{2006}{Bronze medal in the Iranian National Physics Olympiad}
+
+\section{Community Service}
+\cvitem{Ad-hoc reviewing}{ IEEE Transactions on Medical Imaging\newline Frontiers in Neuroscience\newline Conference on Cognitive Computational Neuroscience (CCN)}
+
+\section{Scientific Organization Memberships}
+\cvlistdoubleitem{International Society for MR in Medicine (ISMRM)}{European Society for MR in Medicine and Biology (ESMRMB)}
+\cvlistdoubleitem{Organization for Human Brain Mapping (OHBM)}{}
+
+\section{References}
+\cvlistdoubleitem{Dr. Mark Chiew, \newline \hfill FMRIB Centre, University of Oxford, mark.chiew@ndcn.ox.ac.uk}{Dr. Tolga \c{C}ukur,\newline EEE Dept. and UMRAM, Bilkent University, cukur@ee.bilkent.edu.tr}
+% \cvlistdoubleitem{Assis. Prof. Emine U. Saritas,\newline EEE Dept. and UMRAM, Bilkent University, saritas@ee.bilkent.edu.tr}{}
+
+
+\vfill
+\hfill
+% \textit{Last updated: \today}
 \end{document}
