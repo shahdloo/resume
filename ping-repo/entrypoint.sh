@@ -5,7 +5,7 @@ main() {
   -H "Content-Type: application/json" \
   -H "Authorization: token ${GITHUB_TOKEN}" \
   "https://api.github.com/repos/${REPO}/dispatches" \
-  --data '{"event_type": "update_resume"}'
+  --data '{"event_type": "update_cv"}'
 }
 
 main
