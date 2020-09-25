@@ -24,6 +24,7 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.SECRET_CV }}
+          repository: shahdloo/shahdloo.github.io
           event-type: update_cv
 #       - name: Pings repo
 #         uses: ./ping-repo
