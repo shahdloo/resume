@@ -20,8 +20,14 @@ jobs:
           files: cv.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Pings repo
-        uses: ./ping-repo
-        env:
-          GITHUB_TOKEN: ${{ secrets.SECRET_CV }}
-          REPO: shahdloo/shahdloo.github.io
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.SECRET_CV }}
+          event-type: update_cv
+#       - name: Pings repo
+#         uses: ./ping-repo
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.SECRET_CV }}
+#           REPO: shahdloo/shahdloo.github.io   
+    
