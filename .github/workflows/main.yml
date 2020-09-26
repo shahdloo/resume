@@ -1,9 +1,11 @@
-name: Publish new release of resume
+name: Publish new release of cv
 on:
   push:
     paths:
       - "*.tex"
       - "*.bib"
+    tags:
+      - "v*.*"
 jobs:
   build:
     runs-on: ubuntu-latest
