@@ -17,7 +17,9 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: cv.pdf
+          files: 
+            cv.pdf
+            library.bib
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Repository Dispatch
