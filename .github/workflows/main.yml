@@ -1,4 +1,4 @@
-name: Publish new release of resume
+name: Publish new release of cv
 on:
   push:
     paths:
