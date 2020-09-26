@@ -4,6 +4,8 @@ on:
     paths:
       - "*.tex"
       - "*.bib"
+    tags:
+      - "v*.*"
 jobs:
   build:
     runs-on: ubuntu-latest
