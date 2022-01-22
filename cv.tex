@@ -13,8 +13,35 @@
 %!TEX encoding = UTF-8 Unicode
 
 \documentclass[10pt, a4paper]{article}
-\usepackage{fontspec} 
+\usepackage[quiet]{fontspec} 
+% \setmainfont[Scale=0.8]{[Monaco.ttf]}
+\usepackage{libertine}
 
+% \setromanfont[Mapping=tex-text]{LinLibertine_R}
+% \setsansfont[Mapping=tex-text]{Linux Biolinum}
+\usepackage{ifxetex}
+\usepackage{ifthen}
+
+% \ifxetex
+%     \usepackage{libertine}
+%     \usepackage[log-declarations=false]{xparse} % same as below
+%   \usepackage[quiet]{fontspec} % remove quiet option to check for errors
+%   \setromanfont[Ligatures={Common,TeX}]{Linux  Libertine O}
+%   \setmainfont[Ligatures={Common,TeX}]{Linux  Libertine O}
+%     \setmonofont[SmallCapsFont={Latin Modern Mono Caps}]{Latin Modern Mono Light}
+%     \setsansfont{Linux Biolinum O}
+%     \usepackage{xunicode}
+% \else
+%     \usepackage{sansmath}
+%     %\usepackage{lmodern}
+%     \usepackage{libertine}
+%     \usepackage{DejaVuSansMono}
+%   \usepackage[utf8]{inputenc}
+%   \usepackage[T1]{fontenc}
+%   \usepackage{textcomp}
+%   \usepackage{epstopdf}
+%   \usepackage[final,expansion=true,protrusion=true,spacing=true,kerning=true]{microtype}
+% \fi
 % DOCUMENT LAYOUT
 \usepackage{geometry} 
 \geometry{a4paper, textwidth=5.5in, textheight=8.5in, marginparsep=7pt, marginparwidth=.6in}
