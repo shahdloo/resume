@@ -25,7 +25,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@master
+        uses: peter-evans/repository-dispatch@main
         with:
           token: ${{ secrets.SECRET_CV }}
           repository: shahdloo/shahdloo.github.io
