@@ -33,6 +33,6 @@ jobs:
 #       - name: Pings repo
 #         uses: ./ping-repo
 #         env:
-#           GITHUB_TOKEN: ${{ secrets.SECRET_CV }}
+#            GITHUB_TOKEN: ${{ secrets.SECRET_CV }}
 #           REPO: shahdloo/shahdloo.github.io   
     
