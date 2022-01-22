@@ -16,7 +16,7 @@ jobs:
         uses: shahdloo/latex-action@master
         with:
           root_file: cv.tex
-          latexmk_use_xelatex: true
+          latexmk_use_lualatex: true
           extra_fonts: .*.otf
       - name: Release
         uses: softprops/action-gh-release@v1
