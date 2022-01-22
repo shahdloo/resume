@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
       - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@master
+        uses: shahdloo/latex-action@master
         with:
           root_file: cv.tex
       - name: Release
