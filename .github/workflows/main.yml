@@ -17,6 +17,7 @@ jobs:
         with:
           root_file: cv.tex
           latexmk_use_xelatex: true
+          extra_fonts: .*.otf
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
