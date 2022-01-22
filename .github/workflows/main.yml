@@ -13,9 +13,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
       - name: Compile LaTeX document
-        uses: shahdloo/latex-action@master
+        uses: xu-chen/latex-action@master
         with:
           root_file: cv.tex
+          latexmk_use_lualatex: true
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
