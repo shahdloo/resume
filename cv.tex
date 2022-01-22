@@ -1,14 +1,58 @@
-\documentclass[10pt,a4paper,roman]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+%------------------------------------
+% Dario Taraborelli
+% Typesetting your academic CV in LaTeX
+%
+% URL: http://nitens.org/taraborelli/cvtex
+% DISCLAIMER: This template is provided for free and without any guarantee 
+% that it will correctly compile on your system if you have a non-standard  
+% configuration.
+% Some rights reserved: http://creativecommons.org/licenses/by-sa/3.0/
+%------------------------------------
 
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
 
-% moderncv themes
-\moderncvstyle{classic}                            % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
-\moderncvcolor{blue}                                % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
-%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
-%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+\documentclass[10pt, a4paper]{article}
+\usepackage{fontspec} 
 
+% DOCUMENT LAYOUT
+\usepackage{geometry} 
+\geometry{a4paper, textwidth=5.5in, textheight=8.5in, marginparsep=7pt, marginparwidth=.6in}
+\setlength\parindent{0in}
+\usepackage{multicol}
+% FONTS
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont [Ligatures={Common}, Numbers={OldStyle}]{Linux Libertine O}%, Variant=01
+\setmonofont[Scale=0.8]{[Monaco.ttf]}
+\definecolor{darkgray}{rgb}{0.19,0.19,0.19}
+% ---- CUSTOM COMMANDS
+\chardef\&="E050
+\newcommand{\html}[1]{\href{#1}{\scriptsize\textsc{[html]}}}
+\newcommand{\pdf}[1]{\href{#1}{\scriptsize\textsc{[pdf]}}}
+\newcommand{\doi}[1]{\href{#1}{\scriptsize\textsc{[doi]}}}
+% ---- MARGIN YEARS
+\usepackage{marginnote}
+\newcommand{\amper{}}{\chardef\amper="E0BD }
+\newcommand{\years}[1]{\marginnote{\scriptsize #1}}
+\renewcommand*{\raggedleftmarginnote}{}
+\setlength{\marginparsep}{7pt}
+\reversemarginpar
+\usepackage{fontawesome5}
 
-
+\newlength{\quotewidth}
+\newlength{\hintscolumnwidth}
+\setlength{\hintscolumnwidth}{0.05\textwidth}
+\newlength{\separatorcolumnwidth}
+\setlength{\separatorcolumnwidth}{0.0125\textwidth}
+\newlength{\maincolumnwidth}
+\newlength{\doubleitemmaincolumnwidth}
+\newlength{\listitemsymbolwidth}
+% \settowidth{\listitemsymbolwidth}{\listitemsymbol}
+\newlength{\listitemmaincolumnwidth}
+\newlength{\listdoubleitemmaincolumnwidth}
 % Bibliography
 \usepackage[%
   backend=biber,
@@ -56,140 +100,147 @@
 
 
 
-% character encoding
-\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
-%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
-\usepackage{qrcode}
-\usepackage{graphicx}
-% adjust the page margins
-\usepackage[scale=0.8]{geometry}
-%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
-%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+% HEADINGS
+\usepackage{sectsty} 
+\usepackage[normalem]{ulem} 
+\sectionfont{\mdseries\upshape\Large}
+\subsectionfont{\mdseries\scshape\normalsize} 
+\subsubsectionfont{\mdseries\upshape\large} 
+\setlength\columnsep{1cm}
+% PDF SETUP
+% ---- FILL IN HERE THE DOC TITLE AND AUTHOR
+\usepackage[bookmarks, colorlinks, breaklinks, 
+% ---- FILL IN HERE THE TITLE AND AUTHOR
+  pdftitle={Mo Shahdloo - vita},
+  pdfauthor={Mo Shahdloo},
+  pdfproducer={http://nitens.org/taraborelli/cvtex},
+  driverfallback=dvipdfm
+]{hyperref}  
+\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=MidnightBlue} 
 
-\renewcommand*{\titlefont}{\fontsize{10}{18}\mdseries\upshape}
-
-
-% personal data
-\usepackage{xcolor}
-\name{\textcolor{gray}{Mo}}{Shahdloo}
-% \extrainfo{additional information} 
-\title{Wellcome Centre for Integrative Neuroimaging \newline
-Department of Experimental Psychology\newline
-University of Oxford}                               % optional, remove / comment the line if not wanted
-\address{FMRIB Centre, John Radcliffe Hospital\\}{Oxford, UK - OX3 9DU}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
-\phone[mobile]{+44~7423~814282}                   % optional, remove / comment the line if not wanted
-% \phone[fixed]{+90~(312)~290~8420}                    % optional, remove / comment the line if not wanted
-%\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
-\email{mo.shahdloo@psy.ox.ac.uk}                               % optional, remove / comment the line if not wanted
-\homepage{moshahdloo.com}                         % optional, remove / comment the line if not wanted
-
-
-\photo[65pt][0.0pt]{qr-code}
-% \qrphoto[2cm][0.5pt]{https://tex.stackexchange.com/questions/474546/} % 
+% DOCUMENT
 \begin{document}
-%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
-%-----       resume       ---------------------------------------------------------
-\makecvtitle
+{\huge Mo Shahdloo}\\[1cm]
 
-\section{Academic Experience}
-\subsection{Research}
-\cventry{2020--present}{Postdoctoral Researcher}{\href{https://www.win.ox.ac.uk/research/physics-research}{Physics Group, FMRIB, University of Oxford}}{}{}{}
-\cventry{2014--2020}{Graduate Researcher}{\href{http://www.icon.bilkent.edu.tr}{ICON Lab, Bilkent University}}{}{}{}%
-% Contributing to various research projects, with focus on attentional modulations of the cortical representation of audio-visual natural stimuli, and developing reconstruction techniques for accelerated MRI.
-\subsection{Teaching}
-\cventry{2020--present}{Tutor}{\href{https://www.ndcn.ox.ac.uk/study-with-us/graduate-students/fmrib-graduate-programme/course-descriptions}{FMRIB Graduate Course}}{University of Oxford}{}{}
-\cventry{2021}{Lead Project TA}{\href{https://compneuro.neuromatch.io/index.html}{Neuromatch Academy Summer School}}{}{}{}
-%\cvlistdoubleitem{MR Physics}{}
-\cventry{2014--2020}{Teaching Assistant}{\href{http://www.ee.bilkent.edu.tr/en/}{EE Department}}{Bilkent University}{}{}
-%\cvlistdoubleitem{Statistical Learning}{Computational Neuroscience}
-%\cvlistdoubleitem{Biomedical Signals and Instrumentation}{Neural Networks}
-%\cvlistdoubleitem{Microcontrollers}{Electromagnetics}
+\begin{multicols}{2}
+{\small
+ Wellcome Centre for Integrative Neuroimaging \newline
+Department of Experimental Psychology\newline
+University of Oxford\\\\
+FMRIB Centre, John Radcliffe Hospital\newline
+Oxford \texttt{OX3 9DU},
+UK}\\
+[3cm]
+{\scriptsize\faIcon{envelope}} \quad\href{mailto:mo.shahdloo@psy.ox.ac.uk}{\small mo.shahdloo@psy.ox.ac.uk}\\
+{\scriptsize\faIcon{internet-explorer}} \quad\href{http://moshahdloo.com}{\small moshahdloo.com}\\
+{\scriptsize\faIcon{google-plus}} \quad\href{http://scholar.google.com/citations?user=4PV4eG0AAAAJ&hl=en}{\small scholar.google.com}\\
+{\scriptsize\faIcon{twitter}} \quad\href{http://twitter.com/MoShahdloo}{\small twitter.com/MoShahdloo}\\
+{\scriptsize\faIcon{linkedin}} \quad\href{http://linkedin.com/in/shahdloo}{\small linkedin.com/in/shahdloo}\\
+{\scriptsize\faIcon{github}} \quad\href{http://github.com/shahdloo}{\small github.com/shahdloo}\\
 
-\section{Education}
-\cventry{Jan 2017\\Feb 2020}{Ph.D.}{\href{http://www.ee.bilkent.edu.tr/en/}{Bilkent University}}{Ankara}{\textit{Electrical and Electronics Engineering Department}}{Electrical and Electronics Engineering\newline Advisor: Tolga \c{C}ukur 
-\newline Dissertation title: \textit{Optimization and Machine-Learning in MRI: Applications in Rapid MR Image Reconstruction and Encoding Models of Cortical Representations}
-}% arguments 3 to 6 can be left empty
-\cventry{Sep 2014\\Dec 2016}{M.Sc.}{\href{http://www.ee.bilkent.edu.tr/en/}{Bilkent University}}{Ankara}{\textit{Electrical and Electronics Engineering Department}}{Electrical and Electronics Engineering\newline Advisor: Tolga \c{C}ukur}  % arguments 3 to 6 can be left empty
-\cventry{Sep 2007\\Jun 2011}{B.Sc.}{\href{https://ee.aut.ac.ir/en}{Amirkabir University of Technology}}{Tehran}{\textit{Electrical Engineering Department}}{Electrical Engineering/Control Engineering\newline Advisor: Behzad Samadi}
+\end{multicols}
+% \vfill
+%\hrule
+\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=darkgray}
+\section*{Academic Experience}
+\subsection*{Research}
+\years{2020-}\emph{Postdoctoral Researcher}, \href{https://www.win.ox.ac.uk/research/physics-research}{Physics Group, FMRIB, University of Oxford}\\
+\years{2014-20}\emph{Graduate Researcher}, \href{http://www.icon.bilkent.edu.tr}{ICON Lab, Bilkent University}
 
-% \section{Research Experience}
-% \subsection{Postdoctoral Researcher, FMRIB Centre, University of Oxford}
-% \cventry{2020--present}{Motion-correction for awake non-human primate fMRI}{}{}{}{Functional imaging of awake non-human primates is challenging not only due to their smaller brain size, but also due to excessive local field fluctuations due to animals' motion. Using a novel pulse sequence, efficient reconstruction techniques, and a custom-made multi-channel coil we aim to perform accelerated functional scans of awake monkeys.}
-
-% \subsection{Graduate Researcher, ICON Lab/UMRAM, Bilkent University}
-% \cventry{2018--present}{Hierarchy of the auditory representation revealed by deep models}{}{}{}{Using a natural story listening experimental paradigm, we use computational models based on deep neural networks to study the effect of context integration on the representation of natural stories across the cortex. We are further interested in studying the attentional modulations of this property across cortex. \textit{(Manuscript in preparation)}}
-
-% \cventry{2018--present}{The interaction of action-based attention and semantic representation}{}{}{}{We use voxelwise models to estimate the contribution of a multitude of action categories in natural movies to BOLD responses across cortex. We then study the attentional modulation of the semantic representation under different attention tasks. \textit{(Manuscript in preparation)}}
+\subsection*{Teaching}
+\years{2020-}\emph{Tutor}, \href{https://www.ndcn.ox.ac.uk/study-with-us/graduate-students/fmrib-graduate-programme/course-descriptions}{FMRIB Graduate Course, University of Oxford}\\
+\years{2021-21}\emph{Lead Project TA}, \href{https://compneuro.neuromatch.io/index.html}{Neuromatch Academy Summer School}\\
+\years{2014-20}\emph{Teaching Assistant}, \href{http://www.ee.bilkent.edu.tr/en/}{EE Department, Bilkent University}\\
 
 
-% \cventry{2018--2019}{Joint reconstruction of heavily undersampled acquisitions using generative adversarial networks}{}{}{}{Using conditional generative adversarial networks, we performed synergistic reconstruction-synthesis of multi-contrast MRI. This method preserves high-frequency details of the target contrast by relying on the shared high-frequency information available from the source contrast, and prevents feature leakage or loss by relying on the undersampled acquisitions of the target contrast. \textit{(Dar et al, ArXiv, 2017 \& IEEE JSTSP, 2020)}}
+\section*{Education}
+\years{2017-20}\textsc{PhD} in Electrical and Electronics Engineering, \href{http://www.ee.bilkent.edu.tr/en/}{Bilkent University, Ankara}\\{\small\hspace*{5mm} Advisor: Tolga \c{C}ukur 
+\newline \hspace*{5mm} Dissertation title: \emph{Optimization and Machine-Learning in MRI: Applications in Rapid MR Image Reconstruction and Encoding Models of Cortical Representations}}\\
+\years{2014-16}\textsc{MSc} in Electrical and Electronics Engineering, \href{http://www.ee.bilkent.edu.tr/en/}{Bilkent University, Ankara}\\{\small\hspace*{5mm} Advisor: Tolga \c{C}ukur} \\
+\years{2007-11}\textsc{BSc} in Electrical Engineering, \href{https://ee.aut.ac.ir/en}{Amirkabir University of Technology, Tehran}{\small \newline \hspace*{5mm} Advisor: Behzad Samadi}
 
-% \cventry{2016--2018}{Projection onto epigraph sets for rapid self-tuning CS-MRI}{}{}{}{We proposed a self-tuning reconstruction framework for general single/multi channel and single/multi acquisition datasets, named PESCaT. PESCaT outperforms conventional auto-tuning reconstruction methods while benefiting from 10x less computational burden. \textit{(Shahdloo et al, IEEE TMI, 2019)}}
-
-
-% \cventry{2016--2017}{Trade off between fat-suppression and partial-voluming in bSSFP acquisitions}{}{}{}{Fat-suppression in bSSFP can be achieved using weighted average of in-phase and out-of-phase acquisitions raised to a negative power. We studied the effects of the power parameter on the trade off between fat-suppression and partial voluming artifacts under various experimental setups. We devised optimal parameter values meeting the fat-suppression and partial voluming requirements. \textit{(Manuscript in preparation)}}
-
-
-% \cventry{2014--2016}{Biased-competition in semantic representation during divided attention}{}{}{}{We studied the degree to which the biased-competition (BC) hypothesis can account for semantic modulation during divided attention. We showed that the representations across the cortex follow the BC predictions. Furthermore, intrinsic selectivity of cortical areas biases the competition in category selective areas of the ventral temporal cortex. \textit{(Shahdloo et al, NeuroImage, 2019)}}
-
-
-\section{Publications}
-\nocite{Shahdloo:mrm22,Shahdloo:biorxiv21,Kiremitci:cercor21,Shahdloo:tmi19,Shahdloo:2019fn,Dar:2018uz,Dar:2020jstsp,Kiremitci:biorxv2020}
+\section*{Publications and Talks}
+\nocite{Shahdloo:mrm22,Shahdloo:biorxiv21,Kiremitci:cercor21,Shahdloo:tmi19,Shahdloo:2019fn,Dar:2018uz,Dar:2020jstsp}
 \citesinthissection{7}% There are 3 cites in this section
 \printbibliography[type=article,title={Articles},heading=subbibliography]
-
-% \nocite{Dar:2018uz}
-% \citesinthissection{3}% There are 2 cites in this section
-% \printbibliography[type=online,title={Preprints},heading=subbibliography]
-
 
 \nocite{Shahdloo:2021ismrm,Papp:2021ismrm,Shahdloo:2019ccn,Shahdloo:2019ohbm,Shahdloo:2019esmrmb,Shahdloo:2019ismrm,Shahdloo:2018ismrm,Shahdloo:2017ohbm,Shahdloo:2017esmrmb}
 \citesinthissection{16}% There are 7 cites in this section
 \printbibliography[type=inproceedings,title={Peer Reviewed Conference Publications},heading=subbibliography]
 
-\section{Invited Talks}
-\cvitem{2021}{k-space and MR image reconstruction, educational talk at British and Irish chapter of ISMRM}
-\cvitem{2021}{Voxelwise modelling: unraveling natural perception, NeuroTRACT symposium}%, \textit{online}}
-\cvitem{2020}{Mapping language representation in the brain using deep models, 7th Iranian Human Brain Mapping Congress}%, \textit{online}}
-\cvitem{2019}{Biased competition in semantic representations during visual search, Institute for Advanced Studies in Basic Sciences (IASBS)}%, Zanjan}
+\subsection*{Invited Talks}
+\years{2021} k-space and MR image reconstruction, \emph{educational talk at British and Irish chapter of ISMRM}\\
+\years{2021} Voxelwise modelling: unraveling natural perception, \emph{NeuroTRACT symposium}\\
+\years{2020} Mapping language representation in the brain using deep models, \emph{7th Iranian Human Brain Mapping Congress}\\
+\years{2019} Biased competition in semantic representations during visual search, \emph{Institute for Advanced Studies in Basic Sciences (IASBS)}
 
+\section*{Honors and Awards}
+\years{2014-21}{Full scholarship granted by Bilkent University for graduate studies}\\
+\years{2012}{Ranked 28th among 100k participants in Iranian national higher education examination in Electrical Engineering}\\
+\years{2006}{Bronze medal in the Iranian National Physics Olympiad}
 
-% \section{Programming Skills}
-% \cvitem{Programming Languages}{Python (professional), Matlab (professional), C (professional), C++ (professional), R (intermediate), C\# (intermediate), Fortran (intermediate)}
-% \cvitem{Tools}{Tensorflow (professional), Keras (professional), PyTorch (intermediate), NiPype (frequently used), Git (frequently used), SVN (often used)}
-
-\section{Honors and Awards}
-\cvitem{2014--2021}{Full scholarship granted by Bilkent University for graduate studies}
-\cvitem{2012}{Ranked 28th among 100k participants in Iranian national higher education examination in Electrical Engineering}
-\cvitem{2006}{Bronze medal in the Iranian National Physics Olympiad}
-
-\section{Community Service}
-\cvitem{Editorial board}{ Frontiers in Neuroinformatics\newline OHBM Aperture}
-\cvitem{Ad-hoc reviewing}{ IEEE Transactions on Medical Imaging\newline
-Signal, Image and Video Processing (SIVP)\newline 
-ISMRM\newline
-OHBM\newline 
-CCN}
-
-\section{Scientific Organization Memberships}
-\cvlistdoubleitem{International Society for MR in Medicine (ISMRM)}{Organization for Human Brain Mapping (OHBM)}
-\cvlistdoubleitem{European Society for MR in Medicine and Biology (ESMRMB)}{}
-
-\section{Experience in Industry}
-\cventry{2014-2014}{Hardware developer}{Farineh Fanavar}{Tehran}{Iran}{}
-% {Designed and implemented various industrial communication protocols on embedded systems using C++.}
-
-\cventry{2013-2014}{Senior software developer}{K.A.G.}{Tehran}{Iran}{}
-% {Implemented IEC-60870-5-104 protocol using C/C\#.Implemented OPC client to gather data from local/remote OPC servers used in the national natural gas dispatching system.}
-
-\cventry{2011-2013}{RnD Engineer}{Kerman Tablo}{Tehran}{Iran}{}
-% {Developed process controllers to be used in South Pars gas-processing plant, and implemented them on various microcontroller boards using C and Assembly. Made improvements in software and hardware components of various IO modules of the KTC distributed control system.}
-
-\section{References}
-\cvlistdoubleitem{Prof. Mark Chiew, \newline \hfill FMRIB Centre, University of Oxford, mark.chiew@ndcn.ox.ac.uk}{Prof. Tolga \c{C}ukur,\newline EEE Dept. and UMRAM, Bilkent University, cukur@ee.bilkent.edu.tr}
-\cvlistdoubleitem{Prof. Karla Miller, \newline \hfill FMRIB Centre, University of Oxford, karla.miller@ndcn.ox.ac.uk}{}
-
+\section*{Community Service}
+\begin{multicols}{2}
+\subsection*{Editorial board}
+• Frontiers in Neuroinformatics\newline
+• OHBM Aperture
 \vfill
-\hfill
-% \textit{Last updated: \today}
+
+\subsection*{ad-hoc reviewing}
+• IEEE Transactions on Medical Imaging\newline
+• Signal, Image and Video Processing (SIVP)\newline 
+• ISMRM annual meeting\newline 
+• Conference on Cognitive Computational Neuroscience (CCN)
+\end{multicols}
+
+% \section*{Scientific Organization Memberships}
+% \begin{multicols}{2}
+% \cvlistdoubleitem{International Society for MR in Medicine (ISMRM)}{Organization for Human Brain Mapping (OHBM)}
+% \cvlistdoubleitem{European Society for MR in Medicine and Biology (ESMRMB)}{}
+% \end{multicols}
+\section*{Experience in Industry}
+\years{2014-14}\emph{Hardware developer}, Farineh Fanavar, Tehran, Iran\\
+% {Designed and implemented various industrial communication protocols on embedded systems using C++.}
+\years{2013-14}\emph{Senior software developer}, KAG inc., Tehran, Iran\\
+% {Implemented IEC-60870-5-104 protocol using C/C\#.Implemented OPC client to gather data from local/remote OPC servers used in the national natural gas dispatching system.}
+\years{2011-13}\emph{RnD Engineer}, Kerman Tablo, Tehran, Iran
+%\vspace{1cm}
+
+\section*{References}
+\begin{multicols}{2}
+
+\textbf{Prof. Mark Chiew},\\
+Associate Professor,\\
+FMRIB Centre, University of Oxford, \\
+\href{mailto:mark.chiew@ndcn.ox.ac.uk}{mark.chiew@ndcn.ox.ac.uk}
+
+\textbf{Prof. Karla Miller},\\
+Professor,\\
+FMRIB Centre, University of Oxford, \\
+\href{mailto:karla.miller@ndcn.ox.ac.uk}{karla.miller@ndcn.ox.ac.uk}
+\\
+\\
+\textbf{Prof. Tolga \c{C}ukur}\\
+EEE Dept. and UMRAM, \\
+Bilkent University, \\
+\href{mailto:cukur@ee.bilkent.edu.tr}{cukur@ee.bilkent.edu.tr}
+\\
+\\
+\\
+\\
+
+
+\end{multicols}
+\vfill{}
+%\hrulefill
+
+\begin{center}
+{\scriptsize  Last updated: \today\- •\- 
+% ---- PLEASE LEAVE THIS BACKLINK FOR ATTRIBUTION AS PER CC-LICENSE
+Typeset in \href{http://nitens.org/taraborelli/cvtex}{
+\fontspec{Times New Roman}\XeTeX }\\
+% ---- FILL IN THE FULL URL TO YOUR CV HERE
+\href{http://nitens.org/taraborelli/cvtex}{http://nitens.org/taraborelli/cvtex}}
+\end{center}
+
 \end{document}
