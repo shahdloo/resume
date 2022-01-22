@@ -91,6 +91,56 @@
   sorting=ydnt,         % Sort by year (descending), name, title
 % sorting=none,         % Do not sort at all. All entries are processed in citation order.
 ]{biblatex}
+
+% The second step is to replace \multicitedelim and
+% \multicitesubentrydelim with a version wrapped in
+% the appropriate delimiter.
+\renewcommand*{\do}[1]{%
+  \expandafter\patchcmd\expandafter
+    {\csname abx@macro@\detokenize{#1}\endcsname}%
+    {\multicitedelim}
+    {\bibclosebracket\multicitedelim\bibopenbracket}
+    {}
+    {%
+      \PackageError{biblatex-ieee}{Failed to update citation style}\@ehc
+    }%
+  }
+\docsvlist{cite:comp:end,cite:comp:inset,cite:comp:shand,cite:dump}
+
+\renewcommand*{\do}[1]{%
+  \expandafter\patchcmd\expandafter
+    {\csname abx@macro@\detokenize{#1}\endcsname}%
+    {\multicitesubentrydelim}
+    {\bibclosebracket\multicitesubentrydelim\bibopenbracket}
+    {}
+    {%
+      \PackageError{biblatex-ieee}{Failed to update citation style}\@ehc
+    }%
+  }
+\docsvlist{cite:comp:inset,cite:dump:inset}
+
+
+% There's also one \multiciterangedelim and one
+% \multicitesubentryrangedelimto alter.
+\expandafter\patchcmd\expandafter
+  {\csname abx@macro@\detokenize{cite:dump}\endcsname}%
+  {\multiciterangedelim}
+  {\bibclosebracket\multiciterangedelim\bibopenbracket}
+  {}
+  {%
+    \PackageError{biblatex-ieee}{Failed to update citation style}\@ehc
+  }%
+
+\expandafter\patchcmd\expandafter
+  {\csname abx@macro@\detokenize{cite:dump:inset}\endcsname}%
+  {\multicitesubentryrangedelim}
+  {\bibclosebracket\multicitesubentryrangedelim\bibopenbracket}
+  {}
+  {%
+    \PackageError{biblatex-ieee}{Failed to update citation style}\@ehc
+  }%
+
+  
 \addbibresource[datatype=bibtex]{library.bib} % to use bib file created with filecontents
 
 \renewcommand*{\mkbibnamegiven}[1]{%
