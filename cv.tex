@@ -14,7 +14,7 @@
 
 \documentclass[10pt, a4paper]{article}
 \usepackage{fontspec} 
-\usepackage{metalogo}
+
 % DOCUMENT LAYOUT
 \usepackage{geometry} 
 \geometry{a4paper, textwidth=5.5in, textheight=8.5in, marginparsep=7pt, marginparwidth=.6in}
@@ -60,8 +60,7 @@
   style=numeric-comp,
   % ieee,
 %   bibstyle=authoryear,
-mincitenames=1,maxcitenames=12,
-minnames=1,maxnames=12,
+maxcitenames=9,
   url=false, 
     doi=true,
   sorting=ydnt,         % Sort by year (descending), name, title
@@ -84,28 +83,28 @@ minnames=1,maxnames=12,
 
 % The second step is to replace \multicitedelim with a version wrapped in
 % the appropriate delimiter.
-% \renewcommand*{\do}[1]{%
-%   \expandafter\patchcmd\expandafter
-%     {\csname abx@macro@\detokenize{#1}\endcsname}%
-%     {\multicitedelim}
-%     {\bibclosebracket\multicitedelim\bibopenbracket}
-%     {}
-%     {%
-%       \PackageError{biblatex-ieee}{Failed to update citation style}\@ehc
-%     }%
-%   }
+\renewcommand*{\do}[1]{%
+  \expandafter\patchcmd\expandafter
+    {\csname abx@macro@\detokenize{#1}\endcsname}%
+    {\multicitedelim}
+    {\bibclosebracket\multicitedelim\bibopenbracket}
+    {}
+    {%
+      \PackageError{biblatex-ieee}{Failed to update citation style}\@ehc
+    }%
+  }
 
-% \docsvlist{cite:comp:end,cite:comp:inset,cite:dump}
+\docsvlist{cite:comp:end,cite:comp:inset,cite:dump}
 
-% % There's also one \bibrangedash to alter.
-% \expandafter\patchcmd\expandafter
-%   {\csname abx@macro@\detokenize{cite:dump}\endcsname}%
-%   {\multiciterangedelim}
-%   {\bibclosebracket\multiciterangedelim\bibopenbracket}
-%   {}
-%   {%
-%     \PackageError{biblatex-ieee}{Failed to update citation style}\@ehc
-%   }%
+% There's also one \bibrangedash to alter.
+\expandafter\patchcmd\expandafter
+  {\csname abx@macro@\detokenize{cite:dump}\endcsname}%
+  {\multiciterangedelim}
+  {\bibclosebracket\multiciterangedelim\bibopenbracket}
+  {}
+  {%
+    \PackageError{biblatex-ieee}{Failed to update citation style}\@ehc
+  }%
 
 % More bracket removal required
 \DeclareMultiCiteCommand{\cites}{\cite}{\multicitedelim}
@@ -284,8 +283,9 @@ Bilkent University, \\
 \begin{center}
 {\scriptsize  Last updated: \today\- •\- 
 % ---- PLEASE LEAVE THIS BACKLINK FOR ATTRIBUTION AS PER CC-LICENSE
-Typeset in \href{http://nitens.org/taraborelli/cvtex}{
-\fontspec{Times New Roman}\LuaLaTeX}\\
+Typeset in \href{http://nitens.org/taraborelli/cvtex}{a
+}\\
+% \fontspec{Times New Roman}\XeTeX }\\
 % ---- FILL IN THE FULL URL TO YOUR CV HERE
 \href{http://nitens.org/taraborelli/cvtex}{http://nitens.org/taraborelli/cvtex}}
 \end{center}
