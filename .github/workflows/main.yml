@@ -16,7 +16,7 @@ jobs:
         uses: shahdloo/latex-action@master
         with:
           root_file: cv.tex
-          latexmk_use_xelatex: true
+#           latexmk_use_xelatex: true
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
