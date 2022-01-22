@@ -91,7 +91,7 @@
   sorting=ydnt,         % Sort by year (descending), name, title
 % sorting=none,         % Do not sort at all. All entries are processed in citation order.
 ]{biblatex}
-\addbibresource{library.bib} % to use bib file created with filecontents
+\addbibresource[datatype=bibtex]{library.bib} % to use bib file created with filecontents
 
 \renewcommand*{\mkbibnamegiven}[1]{%
   \ifitemannotation{highlight}
