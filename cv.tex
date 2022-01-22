@@ -57,17 +57,24 @@
 \usepackage[%
   backend=biber,
   defernumbers=true,
-  style=numeric-comp,
-  % ieee,
+%   style=alphabetic,
+%   style=ieee,
+style=nejm,
 %   bibstyle=authoryear,
 mincitenames=1,maxcitenames=12,
 minnames=1,maxnames=12,
   url=false, 
     doi=true,
   sorting=ydnt,         % Sort by year (descending), name, title
+  labeldate=year,
+  alldates=year,
+  urldate=short,
+  articledoi=true
 % sorting=none,         % Do not sort at all. All entries are processed in citation order.
 ]{biblatex}
 
+% \AtEveryBibitem{\clearfield{month}}
+% \AtEveryCitekey{\clearfield{month}}
 
 \makeatletter
 \DeclareCiteCommand{\cite}%
@@ -268,6 +275,7 @@ FMRIB Centre, University of Oxford, \\
 \\
 \\
 \textbf{Prof. Tolga \c{C}ukur}\\
+Associate Professor,\\
 EEE Dept. and UMRAM, \\
 Bilkent University, \\
 \href{mailto:cukur@ee.bilkent.edu.tr}{cukur@ee.bilkent.edu.tr}
