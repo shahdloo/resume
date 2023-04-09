@@ -17,11 +17,59 @@
 \usepackage{metalogo}
 % DOCUMENT LAYOUT
 \usepackage{geometry} 
-\geometry{a4paper, textwidth=5.5in, textheight=8.5in, marginparsep=7pt, marginparwidth=.6in}
+\geometry{a4paper, textwidth=5.5in, textheight=10in, tmargin=0.8in, marginparsep=6pt, marginparwidth=.4in, rmargin=1in, lmargin=1in}
 \setlength\parindent{0in}
 \usepackage{multicol}
 % FONTS
 \usepackage[usenames,dvipsnames]{color}
+\usepackage{fontspec}
+
+\newfontface\lserif{Liberation Serif}
+% \usepackage{lipsum}
+
+% \usepackage{tikz}
+% \usetikzlibrary{shapes.geometric,calc}
+
+% \newcommand\score[2]{\small{
+
+% \pgfmathsetmacro\pgfxa{#1+1}
+
+% \tikzstyle{scorestars}=[circle, draw, inner sep=0.15em,anchor=west]
+
+% \begin{tikzpicture}[baseline]
+%   \foreach \i in {1,...,#2} {
+%     \pgfmathparse{(\i<=#1?"black!70":"lightgray")}
+%     \edef\starcolor{\pgfmathresult}
+%     \draw (\i*1em,0) node[name=star\i,scorestars,fill=\starcolor]  {};
+%   }
+%   \pgfmathparse{(#1>int(#1)?int(#1+1):0}
+%   \let\partstar=\pgfmathresult
+%   \ifnum\partstar>0
+%     \pgfmathsetmacro\starpart{#1-(int(#1))}
+%     \path [clip] (star\partstar.north west) rectangle 
+%     ($(star\partstar.south west)!\starpart!(star\partstar.south east)$);
+%     \fill (\partstar*1em,0) node[scorestars,fill=blue!70]  {};
+%   \fi,
+
+% \end{tikzpicture}}
+% }
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+
+\newcommand\score[2]{\small{
+  \pgfmathsetmacro\pgfxa{#1 + 1}%
+  \tikzstyle{scorestars}=[circle, draw, inner sep=0.15em]%
+  \begin{tikzpicture}[baseline]
+    \foreach \i in {1, ..., #2} {
+      \pgfmathparse{\i<=#1 ? "black" : "lightgray"}
+      \edef\starcolor{\pgfmathresult}
+      \draw (\i*1.75ex, 0) node[name=star\i, scorestars, fill=\starcolor]  {};
+   }
+  \end{tikzpicture}%
+  }
+}
+
 % \usepackage{xunicode}
 % \usepackage{xltxtra}
 \defaultfontfeatures{Mapping=tex-text}
@@ -33,6 +81,7 @@
 \newcommand{\html}[1]{\href{#1}{\scriptsize\textsc{[html]}}}
 \newcommand{\pdf}[1]{\href{#1}{\scriptsize\textsc{[pdf]}}}
 \newcommand{\doi}[1]{\href{#1}{\scriptsize\textsc{[doi]}}}
+\newcommand{\note}[1]{\hspace*{5mm} \begin{minipage}{\dimexpr\textwidth-20pt} \small #1 \end{minipage} \newline}
 % ---- MARGIN YEARS
 \usepackage{marginnote}
 \newcommand{\amper{}}{\chardef\amper="E0BD }
@@ -165,86 +214,135 @@ minnames=1,maxnames=12,
 % ---- FILL IN HERE THE DOC TITLE AND AUTHOR
 \usepackage[bookmarks, colorlinks, breaklinks, 
 % ---- FILL IN HERE THE TITLE AND AUTHOR
-  pdftitle={Mo Shahdloo - vita},
-  pdfauthor={Mo Shahdloo},
-  pdfproducer={http://nitens.org/taraborelli/cvtex},
   driverfallback=dvipdfm
 ]{hyperref}  
 \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=MidnightBlue} 
 
 % DOCUMENT
 \begin{document}
-{\huge Mo Shahdloo}\\[1cm]
+{\huge Mo Shahdloo, PhD}\\[0.5cm]
 
 \begin{multicols}{2}
 {\small
- Wellcome Centre for Integrative Neuroimaging \newline
-Department of Experimental Psychology\newline
-University of Oxford\\\\
-FMRIB Centre, John Radcliffe Hospital\newline
-Oxford \texttt{OX3 9DU},
-UK}\\
+ Vicon Motion Systems,\newline
+6 Oxford Industrial Park, \newline
+Yarnton, Oxfordshire, OX5 1QU}\\
 [3cm]
-{\scriptsize\faIcon{envelope}} \quad\href{mailto:mo.shahdloo@psy.ox.ac.uk}{\small mo.shahdloo@psy.ox.ac.uk}\\
+% {\scriptsize\faIcon{mobile}} \quad\href{tel:+}{\small +44 }\\
+{\scriptsize\faIcon{envelope}} \quad\href{mailto:shahdloo@gmail.com}{\small shahdloo@gmail.com}\\
 {\scriptsize\faIcon{internet-explorer}} \quad\href{http://moshahdloo.com}{\small moshahdloo.com}\\
-{\scriptsize\faIcon{google-plus}} \quad\href{http://scholar.google.com/citations?user=4PV4eG0AAAAJ&hl=en}{\small scholar.google.com}\\
-{\scriptsize\faIcon{twitter}} \quad\href{http://twitter.com/MoShahdloo}{\small twitter.com/MoShahdloo}\\
+% {\scriptsize\faIcon{google-plus}} \quad\href{http://scholar.google.com/citations?user=4PV4eG0AAAAJ&hl=en}{\small scholar.google.com}\\
+% {\scriptsize\faIcon{twitter}} \quad\href{http://twitter.com/MoShahdloo}{\small twitter.com/MoShahdloo}\\
 {\scriptsize\faIcon{linkedin}} \quad\href{http://linkedin.com/in/shahdloo}{\small linkedin.com/in/shahdloo}\\
 {\scriptsize\faIcon{github}} \quad\href{http://github.com/shahdloo}{\small github.com/shahdloo}\\
 
 \end{multicols}
 % \vfill
 %\hrule
+% \hspace*{5mm} \begin{minipage}{\dimexpr\textwidth-10mm} \centering \emph{Neural data scientist with extensive academic and industrial experience in delivering research and development focused on medical imaging, and strong background in C\texttt{++}, Python, and Matlab, applied to semantic modelling, deep learning, machine learning, data visualisation, and statistical analysis.} \end{minipage} \newline
+
 \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=darkgray}
-\section*{Academic Experience}
+\section*{Professional Experience}
+\subsubsection*{Industry}
+\years{2022-present}\textbf{\emph{Machine Learning Computer Vision Scientist}}, \href{https://www.vicon.com/}{Vicon Motion Systems}, Oxford, UK\\
+\note{Developing novel machine learning techniques for human motion analysis.}\\
+\years{2014-14}\textbf{\emph{Embedded Software Developer}}, \href{https://www.linkedin.com/company/farineh-fanavar/about/}{Farineh Tech}, Tehran, Iran\\
+\note{Implementing industrial communication protocols using C\texttt{++} on embedded Linux. The developed components became a key part of the distributed control system product, that have been in use in the South Pars gas refinery plants.}\\
+% {Designed and implemented various industrial communication protocols on embedded systems using C\texttt{++}.}
+\years{2013-14}\textbf{\emph{Software Developer}}, KAG inc., Tehran, Iran\\
+\note{Designing and implementing communication protocols using embedded C{\lserif\#} on WinCE platform, that turned into a leading product in the national remote sensing market.}\\
+% {Implemented IEC-60870-5-104 protocol using C/C\#.Implemented OPC client to gather data from local/remote OPC servers used in the national natural gas dispatching system.}
+\years{2011-13}\textbf{\emph{Research Engineer}} \href{https://www.linkedin.com/company/kermantablo-co/}{Kerman Tablo}, Tehran, Iran\\
+\note{Developing temperature sensor IO hardware modules, and the software implementation of their respective control algorithms in C\texttt{++} and Assembly on embedded Linux, as well as the required kernel drivers to integrate the components into the distributed control system product. The developed products have been in use in multiple power plants.}
+
+
+\subsubsection*{Academia}
 \subsection*{Research}
-\years{2020-}\emph{Postdoctoral Researcher}, \href{https://www.win.ox.ac.uk/research/physics-research}{Physics Group, FMRIB, University of Oxford}\\
-\years{2014-20}\emph{Graduate Researcher}, \href{http://www.icon.bilkent.edu.tr}{ICON Lab, Bilkent University}
+\years{2020-23}\textbf{\emph{Postdoctoral Researcher}}, \href{https://www.win.ox.ac.uk/research/physics-research}{FMRIB Centre, University of Oxford}\\
+\note{
+% \setlength{\parindent}{20pt}
+Developing novel physics and deep-learning based image reconstruction and analysis methods for accelerated MRI, involving extensive programming of the software tools and pulse sequences in Python and C\texttt{++}. Developing denoising methods for ultrahigh-field fMRI through low-rank signal processing. The resulting products are getting used by collaborators at Oxford and UC Berkeley universities, as well as getting published as a journal article and 4 conference papers. \\}
+\years{2014-22}\textbf{\emph{Graduate Researcher}}, \href{http://www.icon.bilkent.edu.tr}{ICON Lab, Bilkent University}\\
+\note{Developing accelerated MRI methods using compressed-sensing and deep-learning for multi-contrast MR image reconstruction and synthesis, using Matlab and Python. Alongside, investigating semantic representations in the human brain by designing experiments and statistical analysis to build predictive models from big-data brain recordings using Bayesian statistics, machine learning and NLP language models. Research outputs led to the PhD degree, as well as 6 journal articles and 7 conference publications.}
+\subsection*{Supervision and Teaching}
+\years{2020-21}\textbf{\emph{Co-supervisor}}, EEE Department, Bilkent University\\
+\note{Co-supervision of students, through their thesis projects in using NLP models to map timescales of semantic representation of natural stories in the human brain.}
+\years{2020-22}\textbf{\emph{Tutor}}, \href{https://www.ndcn.ox.ac.uk/study-with-us/graduate-students/fmrib-graduate-programme/course-descriptions}{MRI Graduate Program, University of Oxford}\\
+\note{Tutoring DPhil students on MR physics, through lectures and interactive tutorials.}
+\years{2021-22}\textbf{\emph{Project Adviser}}, \href{https://compneuro.neuromatch.io/index.html}{Neuromatch Academy Summer School}\\
+\note{Guiding groups of students in their projects during the summer school. The projects spanned multiple areas of neural data science, heavily depending on machine learning/deep learning and large-scale brain recordings.}
+\years{2014-20}\textbf{\emph{Teaching Assistant}}, \href{http://www.ee.bilkent.edu.tr/en/}{EE Department, Bilkent University}\\
+\note{Tutoring multiple courses in electrical engineering, including linear algebra, probability, statistical analysis, computational neuroscience, electromagnetics, and biomedical instrumentation.}
 
-\subsection*{Teaching}
-\years{2020-}\emph{Tutor}, \href{https://www.ndcn.ox.ac.uk/study-with-us/graduate-students/fmrib-graduate-programme/course-descriptions}{FMRIB Graduate Course, University of Oxford}\\
-\years{2021-21}\emph{Lead Project TA}, \href{https://compneuro.neuromatch.io/index.html}{Neuromatch Academy Summer School}\\
-\years{2014-20}\emph{Teaching Assistant}, \href{http://www.ee.bilkent.edu.tr/en/}{EE Department, Bilkent University}\\
-
+\section*{Skills}
+\begin{multicols}{3}
+\years{Tech stack}
+• C/C\texttt{++} \hfill\score{5}{5}\newline
+• Python \hfill\score{5}{5}\newline
+• Tensorflow/Pytorch \hfill\score{5}{5}\newline
+• Numpy/Scipy \hfill\score{5}{5}\newline\\
+• Scikit-learn \hfill\score{5}{5}\newline
+• Tableau \hfill\score{3}{5}\newline 
+• Matlab \hfill\score{5}{5}\newline 
+• R \hfill\score{3}{5}\newline\\
+• SQL \hfill\score{3}{5}\newline
+• FastAPI \hfill\score{4}{5}\newline
+• Docker \hfill\score{5}{5}\newline
+• AWS \hfill\score{4}{5}\newline
+% • RTOS Linux \hfill\score{4}{5}\newline
+% • Socket Prog. \hfill\score{4}{5}\newline
+\end{multicols}
 
 \section*{Education}
-\years{2017-20}\textsc{PhD} in Electrical and Electronics Engineering, \href{http://www.ee.bilkent.edu.tr/en/}{Bilkent University, Ankara}\\{\small\hspace*{5mm} Advisor: Tolga \c{C}ukur 
-\newline \hspace*{5mm} Dissertation title: \emph{Optimization and Machine-Learning in MRI: Applications in Rapid MR Image Reconstruction and Encoding Models of Cortical Representations}}\\
-\years{2014-16}\textsc{MSc} in Electrical and Electronics Engineering, \href{http://www.ee.bilkent.edu.tr/en/}{Bilkent University, Ankara}\\{\small\hspace*{5mm} Advisor: Tolga \c{C}ukur} \\
-\years{2007-11}\textsc{BSc} in Electrical Engineering, \href{https://ee.aut.ac.ir/en}{Amirkabir University of Technology, Tehran}{\small \newline \hspace*{5mm} Advisor: Behzad Samadi}
-
-\section*{Publications and Talks}
-\nocite{Shahdloo:mrm22,Shahdloo:jneurosci22,Kiremitci:cercor21,Shahdloo:tmi19,Shahdloo:2019fn,Dar:2018uz,Dar:2020jstsp}
-\citesinthissection{7}% There are 3 cites in this section
-\printbibliography[type=article,title={Articles},heading=subbibliography]
-
-\nocite{Shahdloo:2022ohbm,Shahdloo:2022ismrm,Shahdloo:2021ismrm,Papp:2021ismrm,Shahdloo:2019ccn,Shahdloo:2019ohbm,Shahdloo:2019esmrmb,Shahdloo:2019ismrm,Shahdloo:2018ismrm,Shahdloo:2017ohbm,Shahdloo:2017esmrmb}
-\citesinthissection{18}% There are 7 cites in this section
-\printbibliography[type=inproceedings,title={Peer Reviewed Conference Publications},heading=subbibliography]
-
-\subsection*{Invited Talks}
-\years{2021} k-space and MR image reconstruction, \emph{educational talk at British and Irish chapter of ISMRM}\\
-\years{2021} Voxelwise modelling: unraveling natural perception, \emph{NeuroTRACT symposium}\\
-\years{2020} Mapping language representation in the brain using deep models, \emph{7th Iranian Human Brain Mapping Congress}\\
-\years{2019} Biased competition in semantic representations during visual search, \emph{Institute for Advanced Studies in Basic Sciences (IASBS)}
+\years{2017-20}\textbf{\textsc{PhD} in Electrical Engineering, \emph{Neural Data Science and Medical Imaging}}, \href{http://www.ee.bilkent.edu.tr/en/}{Bilkent University, Ankara}\\
+\hspace*{5mm} \begin{minipage}{\dimexpr\textwidth-20pt}{\small Advisor: Prof. Tolga \c{C}ukur 
+\newline Dissertation: \emph{Optimization and Machine-Learning in MRI: Applications in Rapid MR Image Reconstruction and Encoding Models of Cortical Representations}}\end{minipage}\\
+\years{2014-16}\textbf{\textsc{MSc} in Electrical Engineering, \emph{Neural Data Science and Medical Imaging}}, \href{http://www.ee.bilkent.edu.tr/en/}{Bilkent University, Ankara}\\{\small\hspace*{5mm} Advisor: Prof. Tolga \c{C}ukur} \\
+\years{2007-11}\textbf{\textsc{BSc} in Electrical Engineering, \emph{Control Theory}}, \href{https://ee.aut.ac.ir/en}{Amirkabir University of Technology, Tehran}{\small \newline \hspace*{5mm} Advisor: Prof. Behzad Samadi}
 
 \section*{Honors and Awards}
-\years{2014-21}{Full scholarship granted by Bilkent University for graduate studies}\\
-\years{2012}{Ranked 28th among 100k participants in Iranian national higher education examination in Electrical Engineering}\\
+% \years{2021}{Endorsed by the UK Research and Innovation (UKRI) for the Global Talent UK visa}\\
+\years{2014-20}{Full scholarship granted by Bilkent University, including tuition waiver and monthly stipend}\\
+\years{2012}{Ranked 28th among 100k participants in the Iranian national higher education examination}\\
 \years{2006}{Bronze medal in the Iranian National Physics Olympiad}
 
-\section*{Community Service}
-\years{Committee membership}
-• Co-chair, \href{https://mritogether.esmrmb.org}{MRI Together 2022}, \emph{Global ESMRMB-endorsed workshop on open science and reproducible MR research.}\newline
+
+\section*{Publications}
+\nocite{Shahdloo:jneurosci22,Shahdloo:mrm22,Kiremitci:cercor21,Shahdloo:tmi19,Shahdloo:2019fn,Dar:2018uz,Dar:2020jstsp}
+\citesinthissection{7}% There are 3 cites in this section
+\printbibliography[type=article,title={Journal Articles},heading=subbibliography]
+
+\nocite{Shahdloo:2022ohbm,Shahdloo:2022ismrm,Shahdloo:2021ismrm,Papp:2021ismrm,Shahdloo:2019ccn,Shahdloo:2019ohbm,Shahdloo:2019esmrmb,Shahdloo:2019ismrm,Shahdloo:2018ismrm,Shahdloo:2017ohbm,Shahdloo:2017esmrmb,Dar:2019ismrm}
+\citesinthissection{18}% There are 7 cites in this section
+\printbibliography[type=inproceedings,title={Conferences},heading=subbibliography]
+
+% \subsection*{Invited Talks}
+% \years{2021} k-space and MR image reconstruction, \emph{educational talk at British and Irish chapter of ISMRM}\\
+% \years{2021} Voxelwise modelling: unraveling natural perception, \emph{NeuroTRACT symposium}\\
+% \years{2020} Mapping language representation in the brain using deep models, \emph{7th Iranian Human Brain Mapping Congress}\\
+% \years{2019} Biased competition in semantic representations during visual search, \emph{Institute for Advanced Studies in Basic Sciences (IASBS)}
+
+% \begin{multicols}{3}
+% \years{Languages}
+% • English \hfill\score{5}{5}\newline \\
+% • Persian \hfill\score{5}{5}\newline \\
+% • Turkish \hfill\score{4}{5}\newline
+% % • FPGA \hfill\score{3}{5}\newline
+% \end{multicols}
+\section*{Voluntary Service}
+% \begin{multicols}{2}
+% \years{Committee}
+• Committee Member, \href{https://mritogether.esmrmb.org}{MRI Together Working Group}, \emph{ESMRMB}\newline
+• Co-chair, \href{https://mritogether.esmrmb.org}{MRI Together 2022}, \emph{ESMRMB workshop on open science and reproducible MR research}\newline
 \\
-\years{Society membership}
+\years{Society member}
 • International Society for MR in Medicine (ISMRM)\newline
 • European Society for MR in Medicine and Biology (ESMRMB)\newline
 • Organization for Human Brain Mapping (OHBM)\newline
 \begin{multicols}{2}
 \years{Editorial board \&\\reviewing}
 • Frontiers in Neuroinformatics\newline
-• OHBM Aperture
+• Aperture Neuro
 \\
 \\
 \\
@@ -261,40 +359,34 @@ UK}\\
 % \cvlistdoubleitem{International Society for MR in Medicine (ISMRM)}{Organization for Human Brain Mapping (OHBM)}
 % \cvlistdoubleitem{European Society for MR in Medicine and Biology (ESMRMB)}{}
 % \end{multicols}
-\section*{Experience in Industry}
-\years{2014-14}\emph{Hardware developer}, Farineh Fanavar, Tehran, Iran\\
-% {Designed and implemented various industrial communication protocols on embedded systems using C++.}
-\years{2013-14}\emph{Senior software developer}, KAG inc., Tehran, Iran\\
-% {Implemented IEC-60870-5-104 protocol using C/C\#.Implemented OPC client to gather data from local/remote OPC servers used in the national natural gas dispatching system.}
-\years{2011-13}\emph{RnD Engineer}, Kerman Tablo, Tehran, Iran
-%\vspace{1cm}
 
-\section*{References}
-\begin{multicols}{2}
+% \section*{References}
+% \begin{multicols}{2}
 
-\textbf{Prof. Mark Chiew},\\
-Associate Professor,\\
-FMRIB Centre, University of Oxford, \\
-\href{mailto:mark.chiew@ndcn.ox.ac.uk}{mark.chiew@ndcn.ox.ac.uk}
+% \textbf{Mark Chiew, PhD.},\\
+% Associate Professor,\\
+% FMRIB Centre, University of Oxford, \\
+% \href{mailto:mark.chiew@ndcn.ox.ac.uk}{mark.chiew@ndcn.ox.ac.uk}
 
-\textbf{Prof. Karla Miller},\\
-Professor,\\
-FMRIB Centre, University of Oxford, \\
-\href{mailto:karla.miller@ndcn.ox.ac.uk}{karla.miller@ndcn.ox.ac.uk}
-\\
-\\
-\textbf{Prof. Tolga \c{C}ukur}\\
-Associate Professor,\\
-EEE Dept. and UMRAM, \\
-Bilkent University, \\
-\href{mailto:cukur@ee.bilkent.edu.tr}{cukur@ee.bilkent.edu.tr}
-\\
-\\
-\\
-\\
+% \textbf{Karla Miller, PhD.},\\
+% Professor,\\
+% FMRIB Centre, University of Oxford, \\
+% \href{mailto:karla.miller@ndcn.ox.ac.uk}{karla.miller@ndcn.ox.ac.uk}
+% \end{multicols}
+% \\
+% \\
+% \textbf{Prof. Tolga \c{C}ukur}\\
+% Associate Professor,\\
+% EEE Dept. and UMRAM, \\
+% Bilkent University, \\
+% \href{mailto:cukur@ee.bilkent.edu.tr}{cukur@ee.bilkent.edu.tr}
+% \\
+% \\
+% \\
+% \\
 
 
-\end{multicols}
+% \end{multicols}
 \vfill{}
 %\hrulefill
 
